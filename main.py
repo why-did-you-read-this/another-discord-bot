@@ -1,5 +1,5 @@
-# 1.0.1
-# added help and ping, bug fixes
+# 1.0.1.1
+# minor changes
 import asyncio
 import time
 import discord
@@ -59,15 +59,13 @@ async def gdz(ctx, subject='абв', number="0"):
     if (subject in gdz_dict1) or (subject in gdz_dict2):
         if subject in gdz_dict1:  # Решак
             l1 = gdz_dict1[subject]
-            l1 = str(l1)
             l1 = ((l1.replace('~~~', number)).replace('.', '-')).replace('-', '.', 2)
         if subject in gdz_dict2:  # ГДЗ
             l2 = gdz_dict2[subject]
-            l2 = str(l2)
             l2 = ((l2.replace('~~~', number)).replace('.', '-nom-')).replace('-nom-', '.', 1)
         await ctx.send(f'{l1}\n{l2}')
         message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
-        await asyncio.sleep(120)
+        await asyncio.sleep(300)
         await ctx.channel.delete_messages([discord.Object(id=message.id)])
     else:
         await ctx.send(f'{ctx.author.mention} предмет указан не верно.')
@@ -100,7 +98,7 @@ async def ping(ctx):
     await message.edit(
         content=f"Bot: {round(bot.latency * 1000)}ms\nAPI: {round((end_time - start_time) * 1000)}ms")
     message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
-    await asyncio.sleep(5)
+    await asyncio.sleep(60)
     await ctx.channel.delete_messages([discord.Object(id=message.id)])
 
 
@@ -116,7 +114,7 @@ async def help(ctx):
 
     await ctx.send(embed=emb)
     message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
-    await asyncio.sleep(60)
+    await asyncio.sleep(300)
     await ctx.channel.delete_messages([discord.Object(id=message.id)])
 
 
