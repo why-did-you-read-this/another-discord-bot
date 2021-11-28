@@ -1,11 +1,13 @@
-# 1.0.1.1
-# minor changes
+# 1.0.2
+# add buttons
 import asyncio
+import os
 import time
 import discord
-import os
-from dotenv import load_dotenv
+
 from discord.ext import commands
+from discord.ui import Button, View
+from dotenv import load_dotenv
 
 load_dotenv()  # не удалять
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all(), case_insensitive=True)
@@ -63,7 +65,9 @@ async def gdz(ctx, subject='абв', number="0"):
         if subject in gdz_dict2:  # ГДЗ
             l2 = gdz_dict2[subject]
             l2 = ((l2.replace('~~~', number)).replace('.', '-nom-')).replace('-nom-', '.', 1)
-        await ctx.send(f'{l1}\n{l2}')
+        button1 = Button(label='Решак', url=l1, emoji='<:reshak:914591951460913152>')
+        button2 = Button(label='ГДЗ', url=l2, emoji='<:gdz:914594068552626196>')
+        await ctx.send(f'{subject}  № {number}', view=View(button1, button2))
         message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
         await asyncio.sleep(300)
         await ctx.channel.delete_messages([discord.Object(id=message.id)])
