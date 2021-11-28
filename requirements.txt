@@ -1,2 +1,2 @@
-py-cord==2.0.0a4480+g1df0afa1
+discord==1.7.3
 python-dotenv==0.19.2

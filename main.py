@@ -1,5 +1,5 @@
-# 1.0.2
-# add buttons
+# 1.0.2.1
+# bug fix
 import asyncio
 import os
 import time
