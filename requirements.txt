@@ -1,2 +1,2 @@
 python-dotenv
--e git://github.com/Pycord-Development/pycord
+-e git+https://github.com/Pycord-Development/pycord#egg=py-cord
