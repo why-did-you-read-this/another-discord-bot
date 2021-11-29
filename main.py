@@ -1,5 +1,5 @@
 # 1.0.2.1
-# bug fix
+# test servers command
 import asyncio
 import os
 import time
@@ -120,6 +120,18 @@ async def help(ctx):
     message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
     await asyncio.sleep(300)
     await ctx.channel.delete_messages([discord.Object(id=message.id)])
+
+
+@bot.command()  # servers
+@commands.has_permissions()
+async def servers(ctx):
+    if ctx.message.author.id == '399500111069315082':
+        s = ''
+        for guild in bot.guilds:
+            s += guild.name + ' '
+            await ctx.send(s)
+    else:
+        await ctx.send(f'{ctx.author.mention} у вас не достаточно прав.')
 
 
 # ----------------------------------------------------------ERRORS------------------------------------------------------
