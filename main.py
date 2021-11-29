@@ -125,14 +125,20 @@ async def help(ctx):
 @bot.command()  # servers
 @commands.has_permissions()
 async def servers(ctx):
-    await ctx.send(f'{ctx.author.id}')
+    await ctx.message.delete()
     if ctx.message.author.id == 399500111069315082:
         s = ''
         for guild in bot.guilds:
-            s += guild.name + ' '
-            await ctx.send(s)
+            s += guild.name + '\n'
+        await ctx.send(s)
+        message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+        await asyncio.sleep(60)
+        await ctx.channel.delete_messages([discord.Object(id=message.id)])
     else:
         await ctx.send(f'{ctx.author.mention} у вас не достаточно прав.')
+        message = await ctx.channel.fetch_message(ctx.channel.last_message_id)
+        await asyncio.sleep(5)
+        await ctx.channel.delete_messages([discord.Object(id=message.id)])
 
 
 # ----------------------------------------------------------ERRORS------------------------------------------------------
