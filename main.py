@@ -125,6 +125,7 @@ async def help(ctx):
 @bot.command()  # servers
 @commands.has_permissions()
 async def servers(ctx):
+    await ctx.send(f'{ctx.author.id}')
     if ctx.message.author.id == '399500111069315082':
         s = ''
         for guild in bot.guilds:
